@@ -1,0 +1,28 @@
+.ejercicio input {
+  height: 20px;
+  width: 60px;
+}
+
+.ejercicio span {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.ejercicio > * {
+  text-align: center !important;
+}
+.ejercicio > * {
+  text-align: center !important;
+}
+
+.ejercicio .input-ejercicio {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+.ejercicio .primer-input,
+.ejercicio .ultimo-input {
+  justify-content: center;
+}
