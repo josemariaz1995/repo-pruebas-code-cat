@@ -6,30 +6,8 @@ import { useHistory } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 
 export const ListaEjercicios = (props) => {
-  const { datosFormaciones, setDatosFormaciones, token, urlApi } =
-    useContext(AuthContext);
+  const { datosFormaciones, token, urlApi } = useContext(AuthContext);
   const history = useHistory();
-
-  const obtenerFormacion = useCallback(async () => {
-    try {
-      const response = await fetch(urlApi + "trabajos/listado-formaciones", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-      const formaciones = await response.json();
-      if (formaciones.error) {
-        throw new Error(formaciones);
-      }
-      setDatosFormaciones(formaciones);
-    } catch (error) {
-      if (error.mensaje.includes("caducado")) {
-        history.push("/home");
-        localStorage.clear();
-      }
-      console.log(error);
-    }
-  }, [history, setDatosFormaciones, token, urlApi]);
 
   const anyadirTrabajoHistorial = useCallback(
     async (idTrabajo) => {
@@ -46,7 +24,6 @@ export const ListaEjercicios = (props) => {
     },
     [token, urlApi]
   );
-  useEffect(() => obtenerFormacion(), [obtenerFormacion]);
 
   const irEjercicios = async (id) => {
     history.push("/ejercicios/" + id);

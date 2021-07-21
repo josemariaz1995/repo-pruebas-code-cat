@@ -65,7 +65,7 @@ export const ListaSinOrdenar = (props) => {
       </Col>
       <Col xs="8" className="input-ejercicio">
         <span>{"</ "}</span>
-        <input type="text" value={input2} />
+        <input type="text" value={input2} readOnly />
         <span>{" >"}</span>
       </Col>
       <Col xs="8" className="input-ejercicio">
@@ -76,7 +76,7 @@ export const ListaSinOrdenar = (props) => {
       <Col xs="12">Segundo elemento</Col>
       <Col xs="8" className="input-ejercicio  justify-self-end">
         <span>{"</ "}</span>
-        <input type="text" value={input3} />
+        <input type="text" value={input3} readOnly />
         <span>{" >"}</span>
       </Col>
       <Col xs="12" className="input-ejercicio ultimo-input">
