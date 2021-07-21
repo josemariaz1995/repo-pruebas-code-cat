@@ -26,26 +26,47 @@ export const CodeCat = () => {
   useEffect(() => obtenerDatosUsuario(), [obtenerDatosUsuario]);
   return (
     <Row>
-      <Col>nivel: {datosUsuario?.nivelUsuario?.nivel}</Col>
-      <ProgressBar
-        className="progress p-0"
-        striped
-        variant="info"
-        label={
-          Math.floor((datosUsuario?.usuario?.experiencia * 100) / 700) + "%"
-        }
-        now={datosUsuario?.usuario?.experiencia}
-        min={0}
-        max={700}
-      />
-      <Col>Titulo: {datosUsuario?.nivelUsuario?.titulo}</Col>
+      {datosUsuario.length !== 0 && (
+        <>
+          <Col>nivel: {datosUsuario.nivelUsuario.nivel}</Col>
+          <ProgressBar
+            className="progress p-0"
+            striped
+            animated
+            variant="info"
+            label={
+              isNaN(
+                Math.floor(
+                  ((datosUsuario.usuario.experiencia -
+                    datosUsuario.nivelUsuario.experiencia) *
+                    100) /
+                    (datosUsuario.siguienteNivel.experiencia -
+                      datosUsuario.nivelUsuario.experiencia)
+                )
+              )
+                ? ""
+                : Math.floor(
+                    ((datosUsuario.usuario.experiencia -
+                      datosUsuario.nivelUsuario.experiencia) *
+                      100) /
+                      (datosUsuario.siguienteNivel.experiencia -
+                        datosUsuario.nivelUsuario.experiencia)
+                  ) + "%"
+            }
+            now={datosUsuario.usuario.experiencia}
+            min={datosUsuario.nivelUsuario.experiencia}
+            max={datosUsuario.siguienteNivel.experiencia}
+          />
+          <Col>Titulo: {datosUsuario.nivelUsuario.titulo}</Col>
 
-      <Col>Username: {datosUsuario?.usuario?.username}</Col>
-      <Col>Exp: {datosUsuario?.usuario?.experiencia}</Col>
-      <Col>
-        galletitas:
-        {datosUsuario?.usuario?.galletas ? datosUsuario.usuario.galletas : 0}
-      </Col>
+          <Col>Username: {datosUsuario.usuario.username}</Col>
+          <Col>Exp: {datosUsuario.usuario.experiencia}</Col>
+          <Col>
+            galletitas:
+            {datosUsuario.usuario.galletas ? datosUsuario.usuario.galletas : 0}
+          </Col>
+        </>
+      )}
     </Row>
   );
 };
